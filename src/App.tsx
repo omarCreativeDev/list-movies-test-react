@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './App.module.css';
 import {useEffect, useState} from 'react';
 import axios, { AxiosResponse } from 'axios';
+import MovieItem from './components/MovieItem';
 import { Movie, MovieResponse, MovieState } from './model/interfaces';
 
 function App() {
@@ -25,12 +26,12 @@ function App() {
       <div className="App">
         <h1>Movie list</h1>
         {movies?.isLoading && `Loading...`}
-        <ul className={styles.container}>
+        <div className={styles.container}>
           {movies?.data.length > 0 && movies.data.map((movie: Movie) => {
-            return <li key={movie?.id}>{movie?.title}</li>
+              return <MovieItem key={movie?.id} image={movie.poster_path} title={movie.title}></MovieItem>
           })
           }
-        </ul>
+        </div>
       </div>
   );
 }
